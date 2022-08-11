@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const upload = require('../configs/upload');
 
 const {
     uploadNewFile,
@@ -7,7 +6,9 @@ const {
     deleteFile,
 } = require("../controllers/files");
 
-router.post('/', upload.single("avatar"), uploadNewFile);
+const { uploadFile } = require("../../storageprovider/controllers/localfilesystem");
+
+router.post('/', uploadFile, uploadNewFile);
 
 router.get('/:publicKey', downloadFile);
 

@@ -1,6 +1,7 @@
 const fileService = require("../services/files");
 
 const uploadNewFile = (req, res) => {
+    console.log("uploadNewFile::::::!!! ", req.file);
     // extract file data from request body
     // validate the parameters
     // create appropriate object
