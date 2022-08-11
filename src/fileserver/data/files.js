@@ -1,13 +1,13 @@
 const DB = require("./db.json");
+const { saveToDatabase } = require("./utils");
 
 const uploadNewFile = (fileData) => {
     try {
-        // upload the file to storage
-        // update the DB
-        // return public and private key
+        DB.files.push(fileData);
+        saveToDatabase(DB);
         return {
-            publicKey: '',
-            privateKey: ''
+            publicKey: fileData.publickey,
+            privateKey: fileData.privatekey
         }
     } catch (error) {
         throw {
@@ -16,7 +16,6 @@ const uploadNewFile = (fileData) => {
         };
     }
 };
-
 
 const downloadFile = (fileData) => {
     try {
@@ -35,7 +34,6 @@ const downloadFile = (fileData) => {
     }
 };
 
-
 const deleteFile = (fileData) => {
     try {
         // delete the file from storage
@@ -51,7 +49,6 @@ const deleteFile = (fileData) => {
         };
     }
 };
-
 
 module.exports = {
     uploadNewFile,

@@ -1,14 +1,9 @@
 const fileService = require("../services/files");
 
 const uploadNewFile = (req, res) => {
-    console.log("uploadNewFile::::::!!! ", req.file);
-    // extract file data from request body
-    // validate the parameters
-    // create appropriate object
-    // call service function
-    const {} = req.body;
+    const { originalname, mimetype, filename } = req.file;
 
-    const fileData = {};
+    const fileData = { originalname, mimetype, filename };
     try {
         const uploadedFileData = fileService.uploadNewFile(fileData);
         res.status(201).send({
@@ -30,7 +25,7 @@ const downloadFile = (req, res) => {
     // validate the parameters
     // create appropriate object
     // call service function
-    const {} = req.params;
+    const { } = req.params;
     const fileData = {};
     try {
         const downloadedFileData = fileService.downloadFile(fileData);
@@ -53,7 +48,7 @@ const deleteFile = (req, res) => {
     // validate the parameters
     // create appropriate object
     // call service function
-    const {} = req.params;
+    const { } = req.params;
     const fileData = {};
     try {
         fileService.deleteFile(fileData);

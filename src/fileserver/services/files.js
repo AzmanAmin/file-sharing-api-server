@@ -1,8 +1,16 @@
+const { v4: uuid } = require('uuid');
 const files = require('../data/files');
 
 const uploadNewFile = (fileData) => {
+    const newFileData = {
+        ...fileData,
+        privatekey: uuid(),
+        publickey: uuid(),
+        createdat: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+        updatedat: new Date().toLocaleString("en-US", { timeZone: "UTC" })
+    }
     try {
-        return files.uploadNewFile(fileData);
+        return files.uploadNewFile(newFileData);
     } catch (error) {
         throw error;
     }
