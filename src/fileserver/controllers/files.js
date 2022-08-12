@@ -36,17 +36,29 @@ const downloadFile = (req, res, next) => {
     }
 };
 
-const deleteFile = (req, res) => {
-    // extract file data from request/params body
-    // validate the parameters
-    // create appropriate object
-    // call service function
-    const { } = req.params;
-    const fileData = {};
+const getFileToDelete = (req, res, next) => {
+    const { privateKey } = req.params;
     try {
-        fileService.deleteFile(fileData);
-        res.status(204).send({
-            status: "OK"
+        const fileData = fileService.getFileToDelete(privateKey);
+        req.fileData = fileData;
+        next();
+    } catch (error) {
+        res.status(error?.status || 500).send({
+            status: "FAILED",
+            data: {
+                error: error?.message || error
+            }
+        });
+    }
+};
+
+const deleteFile = (req, res) => {
+    const { privateKey } = req.params;
+    try {
+        const fileData = fileService.deleteFile(privateKey);
+        res.status(200).send({
+            status: "OK",
+            data: fileData
         });
     } catch (error) {
         res.status(error?.status || 500).send({
@@ -61,5 +73,6 @@ const deleteFile = (req, res) => {
 module.exports = {
     uploadNewFile,
     downloadFile,
-    deleteFile,
+    getFileToDelete,
+    deleteFile
 };

@@ -45,14 +45,38 @@ const downloadFile = (publicKey) => {
     }
 };
 
-const deleteFile = (fileData) => {
+const getFileToDelete = (privateKey) => {
     try {
-        // delete the file from storage
-        // update the DB
-        // return the file removal status
-        return {
-            fileRemoved: true
+        const fileData = DB.files.find((file) => file.privatekey === privateKey);
+        if (!fileData) {
+            throw {
+                status: 400,
+                message: `Can't find file with private key '${privateKey}'`
+            }
         }
+
+        const filePath = fileData.path;
+        return { filePath }
+    } catch (error) {
+        throw {
+            status: 500,
+            message: error?.message || error
+        };
+    }
+};
+
+const deleteFile = (privateKey) => {
+    try {
+        const indexForDeletion = DB.files.findIndex((file) => file.privatekey === privateKey);
+        if (indexForDeletion === -1) {
+            throw {
+                status: 400,
+                message: `Can't find file with private key '${privateKey}'`
+            }
+        }
+        DB.files.splice(indexForDeletion, 1);
+        saveToDatabase(DB);
+        return { fileRemoved: true }
     } catch (error) {
         throw {
             status: 500,
@@ -64,5 +88,6 @@ const deleteFile = (fileData) => {
 module.exports = {
     uploadNewFile,
     downloadFile,
+    getFileToDelete,
     deleteFile,
 };

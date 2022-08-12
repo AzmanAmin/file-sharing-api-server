@@ -24,9 +24,17 @@ const downloadFile = (publicKey) => {
     }
 };
 
-const deleteFile = (fileData) => {
+const getFileToDelete = (privateKey) => {
     try {
-        return files.deleteFile(fileData);
+        return files.getFileToDelete(privateKey);
+    } catch (error) {
+        throw error;
+    }
+};
+
+const deleteFile = (privateKey) => {
+    try {
+        return files.deleteFile(privateKey);
     } catch (error) {
         throw error;
     }
@@ -35,5 +43,6 @@ const deleteFile = (fileData) => {
 module.exports = {
     uploadNewFile,
     downloadFile,
+    getFileToDelete,
     deleteFile,
 };

@@ -1,3 +1,4 @@
+const fs = require('fs');
 const upload = require('../configs/upload');
 
 const uploadFile = (req, res, next) => {
@@ -21,7 +22,20 @@ const downloadOneFile = (req, res) => {
     });
 }
 
+const deleteFileFromStorage = (req, res, next) => {
+    const directoryPath = req.fileData.filePath;
+    try {
+        if (fs.existsSync(directoryPath)) {
+            fs.unlinkSync(directoryPath);
+        }
+        next();
+    } catch (error) {
+        res.send(error);
+    }
+}
+
 module.exports = {
     uploadFile,
-    downloadOneFile
+    downloadOneFile,
+    deleteFileFromStorage
 }
