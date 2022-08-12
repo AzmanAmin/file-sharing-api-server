@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const apiLimiter = require('../configs/limiter');
 
 const {
     uploadNewFile,
@@ -13,9 +14,9 @@ const {
     deleteFileFromStorage
 } = require("../../storageprovider/controllers/localfilesystem");
 
-router.post('/', uploadFile, uploadNewFile);
+router.post('/', apiLimiter, uploadFile, uploadNewFile);
 
-router.get('/:publicKey', downloadFile, downloadOneFile);
+router.get('/:publicKey', apiLimiter, downloadFile, downloadOneFile);
 
 router.delete('/:privateKey', getFileToDelete, deleteFileFromStorage, deleteFile);
 
