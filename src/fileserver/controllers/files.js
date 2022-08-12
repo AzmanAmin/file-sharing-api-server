@@ -20,19 +20,12 @@ const uploadNewFile = (req, res) => {
     }
 };
 
-const downloadFile = (req, res) => {
-    // extract file data from request/params body
-    // validate the parameters
-    // create appropriate object
-    // call service function
-    const { } = req.params;
-    const fileData = {};
+const downloadFile = (req, res, next) => {
+    const { publicKey } = req.params;
     try {
-        const downloadedFileData = fileService.downloadFile(fileData);
-        res.send({
-            status: "OK",
-            data: downloadedFileData
-        });
+        const downloadedFileData = fileService.downloadFile(publicKey);
+        req.downloadedFileData = downloadedFileData;
+        next();
     } catch (error) {
         res.status(error?.status || 500).send({
             status: "FAILED",

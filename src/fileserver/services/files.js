@@ -16,9 +16,9 @@ const uploadNewFile = (fileData) => {
     }
 };
 
-const downloadFile = (fileData) => {
+const downloadFile = (publicKey) => {
     try {
-        return files.downloadFile(fileData);
+        return files.downloadFile(publicKey);
     } catch (error) {
         throw error;
     }

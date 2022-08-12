@@ -10,6 +10,18 @@ const uploadFile = (req, res, next) => {
     });
 };
 
+const downloadOneFile = (req, res) => {
+    const directoryPath = req.downloadedFileData.filePath;
+    res.sendFile(directoryPath, (err) => {
+        if (err) {
+            res.status(500).send({
+                message: "Could not download the file. " + err,
+            });
+        }
+    });
+}
+
 module.exports = {
-    uploadFile
+    uploadFile,
+    downloadOneFile
 }

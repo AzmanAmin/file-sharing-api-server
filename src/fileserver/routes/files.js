@@ -6,11 +6,14 @@ const {
     deleteFile,
 } = require("../controllers/files");
 
-const { uploadFile } = require("../../storageprovider/controllers/localfilesystem");
+const {
+    uploadFile,
+    downloadOneFile
+} = require("../../storageprovider/controllers/localfilesystem");
 
 router.post('/', uploadFile, uploadNewFile);
 
-router.get('/:publicKey', downloadFile);
+router.get('/:publicKey', downloadFile, downloadOneFile);
 
 router.delete('/:privateKey', deleteFile);
 
