@@ -1,9 +1,9 @@
 const fileService = require("../services/files");
 
 const uploadNewFile = (req, res) => {
-    const { originalname, mimetype, filename } = req.file;
+    const { originalname, mimetype, destination, filename, path } = req.file;
 
-    const fileData = { originalname, mimetype, filename };
+    const fileData = { originalname, mimetype, destination, filename, path };
     try {
         const uploadedFileData = fileService.uploadNewFile(fileData);
         res.status(201).send({
