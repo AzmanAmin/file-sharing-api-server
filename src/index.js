@@ -19,3 +19,5 @@ app.use('/api/files', filesRouter);
 
 // storage cleanup mechanism
 setInterval(storageCleanup, config.CLEANUP_JOB_INTERVAL * 1000 * 60);
+
+module.exports = app;
