@@ -1,5 +1,5 @@
 const fs = require('fs');
-const upload = require('../configs/upload');
+const upload = require('../middlewares/upload');
 
 const uploadFile = (req, res, next) => {
     upload(req, res, next, (err) => {
