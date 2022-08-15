@@ -30,7 +30,7 @@ const downloadFile = (publicKey) => {
         const indexForUpdate = DB.files.findIndex((file) => file.publickey === publicKey);
         const updatedFileData = {
             ...DB.files[indexForUpdate],
-            updatedat: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
+            updatedat: Date.now(),
         };
         DB.files[indexForUpdate] = updatedFileData;
         saveToDatabase(DB);

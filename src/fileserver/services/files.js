@@ -6,8 +6,8 @@ const uploadNewFile = (fileData) => {
         ...fileData,
         privatekey: uuid(),
         publickey: uuid(),
-        createdat: new Date().toLocaleString("en-US", { timeZone: "UTC" }),
-        updatedat: new Date().toLocaleString("en-US", { timeZone: "UTC" })
+        createdat: Date.now(),
+        updatedat: Date.now()
     }
     try {
         return files.uploadNewFile(newFileData);
