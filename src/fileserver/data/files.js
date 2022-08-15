@@ -1,6 +1,11 @@
+// importing the dependencies
 const DB = require("./db.json");
 const { saveToDatabase } = require("./utils");
 
+/**
+ * @param  {object} fileData
+ * stores new file information in DB
+ */
 const uploadNewFile = (fileData) => {
     try {
         DB.files.push(fileData);
@@ -17,6 +22,10 @@ const uploadNewFile = (fileData) => {
     }
 };
 
+/**
+ * @param  {string} publicKey
+ * fetches the file information from DB with public key
+ */
 const downloadFile = (publicKey) => {
     try {
         const fileData = DB.files.find((file) => file.publickey === publicKey);
@@ -45,6 +54,10 @@ const downloadFile = (publicKey) => {
     }
 };
 
+/**
+ * @param  {string} privateKey
+ * fetches the file information from DB to be deleted
+ */
 const getFileToDelete = (privateKey) => {
     try {
         const fileData = DB.files.find((file) => file.privatekey === privateKey);
@@ -65,6 +78,10 @@ const getFileToDelete = (privateKey) => {
     }
 };
 
+/**
+ * @param  {string} privateKey
+ * deletes a file from DB with the private key
+ */
 const deleteFile = (privateKey) => {
     try {
         const indexForDeletion = DB.files.findIndex((file) => file.privatekey === privateKey);

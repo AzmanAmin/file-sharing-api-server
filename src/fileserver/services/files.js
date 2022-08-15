@@ -1,6 +1,11 @@
+// importing the dependencies
 const { v4: uuid } = require('uuid');
 const files = require('../data/files');
 
+/**
+ * @param  {object} fileData
+ * stores new file information
+ */
 const uploadNewFile = (fileData) => {
     const newFileData = {
         ...fileData,
@@ -16,6 +21,10 @@ const uploadNewFile = (fileData) => {
     }
 };
 
+/**
+ * @param  {string} publicKey
+ * fetches the file information
+ */
 const downloadFile = (publicKey) => {
     try {
         return files.downloadFile(publicKey);
@@ -24,6 +33,10 @@ const downloadFile = (publicKey) => {
     }
 };
 
+/**
+ * @param  {string} privateKey
+ * fetches the file information to be deleted
+ */
 const getFileToDelete = (privateKey) => {
     try {
         return files.getFileToDelete(privateKey);
@@ -32,6 +45,10 @@ const getFileToDelete = (privateKey) => {
     }
 };
 
+/**
+ * @param  {string} privateKey
+ * deletes a file with the private key
+ */
 const deleteFile = (privateKey) => {
     try {
         return files.deleteFile(privateKey);
