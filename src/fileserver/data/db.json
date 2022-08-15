@@ -1,15 +1,3 @@
 {
-  "files": [
-    {
-      "originalname": "Resume_AzmanAminZaman.pdf",
-      "mimetype": "application/pdf",
-      "destination": "/media/azman/Utilities/Projects/NodeJsProject/file-sharing-api-server/uploads",
-      "filename": "file-1660550487162.pdf",
-      "path": "/media/azman/Utilities/Projects/NodeJsProject/file-sharing-api-server/uploads/file-1660550487162.pdf",
-      "privatekey": "0de2f2ac-9c0a-4361-ba68-c5f00ee6884a",
-      "publickey": "232a77d2-7337-4a58-bf6c-59979704b92f",
-      "createdat": "8/15/2022, 8:01:27 AM",
-      "updatedat": "8/15/2022, 8:21:55 AM"
-    }
-  ]
+  "files": []
 }
