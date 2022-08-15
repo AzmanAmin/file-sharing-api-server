@@ -8,9 +8,12 @@ const apiLimiter = rateLimit({
     standardHeaders: true,
     legacyHeaders: false,
     handler: (req, res, next, options) => {
-        console.log("options: ", options);
-        console.log("req: ", req);
-        next();
+        res.status(options.statusCode || 400).send({
+            status: "FAILED",
+            data: {
+                error: options.message
+            }
+        });
     }
 });
 
