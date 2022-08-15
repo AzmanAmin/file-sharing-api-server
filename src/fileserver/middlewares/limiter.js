@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require('../configs/config');
 const rateLimit = require('express-rate-limit');
 
 const apiLimiter = rateLimit({
@@ -7,6 +7,11 @@ const apiLimiter = rateLimit({
     message: "Too many requests!! Please try again later.",
     standardHeaders: true,
     legacyHeaders: false,
+    handler: (req, res, next, options) => {
+        console.log("options: ", options);
+        console.log("req: ", req);
+        next();
+    }
 });
 
 module.exports = apiLimiter;

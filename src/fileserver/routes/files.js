@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const apiLimiter = require('../configs/limiter');
+const apiLimiter = require('../middlewares/limiter');
 
 const {
     uploadNewFile,
